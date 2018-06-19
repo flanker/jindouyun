@@ -39,7 +39,7 @@ module Jindouyun
 
     def decrypt(payload)
       encrypted_payload = payload['echostr'] || payload['encrypt']
-      sign = generate_signature encrypted_payload, payload['timeStamp'], payload['nonce']
+      sign = generate_signature encrypted_payload, payload['timeStamp'] || payload['timestamp'], payload['nonce']
       message, app_id = decrypt_payload encrypted_payload
       return message, app_id, sign
     end
